@@ -1,0 +1,12 @@
+[Unit]
+Description=Iniciar o projeto Flask automaticamente
+After=network.target
+
+[Service]
+User=kali
+WorkingDirectory=/home/kali/osint_backup
+ExecStart=/home/kali/osint_backup/start_osint_tool.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

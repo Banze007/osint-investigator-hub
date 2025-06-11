@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ferramenta de investigação OSINT e hacking ético.">
+    <meta name="keywords" content="OSINT, hacking ético, investigação, cibersegurança">
+    <meta name="author" content="Seu Nome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT_Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-image: background-image: url('/static/dragao_kali.jpg'); /* Ajustado para voltar ao diretório pai */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .header-line {
+            background-color: #ff0000;
+            height: 5px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            color: #ff0000;
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 10px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        .detective-icon {
+            font-size: 4rem;
+            color: #ff0000;
+            margin-bottom: 0;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .main-container {
+            margin-left: 20px;
+            margin-top: 120px;
+            max-width: 800px;
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        .description {
+            font-size: 1.2rem;
+            color: #d3d3d3;
+            margin-bottom: 50px;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+        .tool-btn {
+            background-color: #000000;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            color: #ffffff;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            width: 250px;
+            display: block;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .tool-btn:hover {
+            background-color: #ff0000;
+            color: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.7);
+        }
+        .tool-btn:hover::before {
+            left: 100%;
+        }
+        .right-panel {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            width: 300px;
+        }
+        .status-panel, .terminal {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .status-panel h3, .terminal h3 {
+            color: #ff0000;
+            margin-bottom: 15px;
+        }
+        .terminal pre {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        @media (max-width: 768px) {
+            .right-panel {
+                position: static;
+                width: 100%;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-line"></div>
+        <div class="header-container">
+            <i class="fas fa-user-secret detective-icon"></i>
+            <a href="/" class="logo">OSINT_Hub</a>
+        </div>
+    </header>
+    <main>
+        <div class="main-container">
+            <h1 class="title">OSINT Investigator</h1>
+            <p class="description">Ferramentas de Investigação e Hacking Ético</p>
+            <div>
+                <a href="/theharvester" class="btn tool-btn">Iniciar Investigação</a>
+                <a href="/sherlock" class="btn tool-btn">Busca de Perfis</a>
+                <a href="/phoneinfoga" class="btn tool-btn">Info de Telefone</a>
+                <a href="/whois" class="btn tool-btn">Consulta Whois</a>
+                <a href="/exiftool" class="btn tool-btn">Extrair Metadados</a>
+                <a href="/nmap" class="btn tool-btn">Escanear Rede</a>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="status-panel">
+                <h3>Status do Sistema</h3>
+                <p><strong>Conexão:</strong> Ativa</p>
+                <p><strong>Última Verificação:</strong> 5 minutos atrás</p>
+                <p><strong>Notícias:</strong> <a href="#">Novo ataque cibernético detectado</a></p>
+            </div>
+            <div class="terminal">
+                <h3>Logs do Sistema</h3>
+                <pre>
+                    <code>
+[INFO] Iniciando escaneamento de rede...
+[SUCCESS] 5 dispositivos encontrados.
+[WARNING] 1 dispositivo com vulnerabilidades.
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.tool-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                alert(`Você clicou em: ${button.textContent}`);
+            });
+        });
+    </script>
+</body>
+</html>

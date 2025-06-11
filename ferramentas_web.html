@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas OSINT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff0000; /* Vermelho */
+            animation: float 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 i {
+            margin: 0 10px;
+            color: #ff0000; /* Vermelho */
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            color: #800080; /* Roxo */
+        }
+        .tool-link {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .tool-link:hover {
+            color: #ff0000;
+        }
+        .tool-link i {
+            margin-right: 10px;
+        }
+        .tool-link .tooltip {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the text */
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tool-link:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .back-button {
+            margin-top: 30px;
+            padding: 5px 10px;
+            font-size: 1rem;
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #cc0000;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(42, 42, 42, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            flex: 1;
+            padding: 10px;
+        }
+        .ethical-hacking {
+            margin-top: 20px;
+            font-size: 0.9rem; /* Diminuir o tamanho */
+            color: #ffffff; /* Branco */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <i class="fas fa-user-secret"></i> <!-- Ícone de investigador -->
+            Ferramentas OSINT
+            <i class="fas fa-dragon"></i> <!-- Ícone de dragão -->
+        </h1>
+
+        <div class="row">
+            <div class="column">
+                <h2>Verificação de E-mails e Senhas Vazadas</h2>
+                <a href="https://haveibeenpwned.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-search"></i>Have I Been Pwned
+                    <span class="tooltip">Verifique se seu e-mail foi comprometido em um vazamento de dados.</span>
+                </a>
+                <a href="https://www.dehashed.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-database"></i>Dehashed
+                    <span class="tooltip">Pesquise dados vazados, incluindo e-mails e senhas.</span>
+                </a>
+                <a href="https://leakcheck.net/" target="_blank" class="tool-link">
+                    <i class="fas fa-shield-alt"></i>LeakCheck
+                    <span class="tooltip">Verifique se um e-mail ou senha foi comprometido em um vazamento de dados.</span>
+                </a>
+                <a href="https://snusbase.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-database"></i>Snusbase
+                    <span class="tooltip">Pesquise dados vazados, incluindo e-mails e senhas.</span>
+                </a>
+
+                <h2>Pesquisa de Dispositivos e Serviços</h2>
+                <a href="https://www.shodan.io/" target="_blank" class="tool-link">
+                    <i class="fas fa-server"></i>Shodan
+                    <span class="tooltip">Pesquise dispositivos conectados à internet.</span>
+                </a>
+                <a href="https://censys.io/" target="_blank" class="tool-link">
+                    <i class="fas fa-network-wired"></i>Censys
+                    <span class="tooltip">Pesquise dispositivos e serviços expostos na internet.</span>
+                </a>
+                <a href="https://www.zoomeye.org/" target="_blank" class="tool-link">
+                    <i class="fas fa-search"></i>ZoomEye
+                    <span class="tooltip">Pesquise dispositivos conectados à internet.</span>
+                </a>
+
+                <h2>Pesquisa de Informações de Domínio</h2>
+                <a href="https://www.whois.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-globe"></i>Whois
+                    <span class="tooltip">Obtenha informações sobre registros de domínio.</span>
+                </a>
+                <a href="https://dnsdumpster.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-search"></i>Dnsdumpster
+                    <span class="tooltip">Ferramenta de pesquisa de DNS para mapeamento de domínio.</span>
+                </a>
+                <a href="https://viewdns.info/" target="_blank" class="tool-link">
+                    <i class="fas fa-eye"></i>View Dns.info
+                    <span class="tooltip">Ferramenta de pesquisa de DNS para mapeamento de domínio.</span>
+                </a>
+            </div>
+
+            <div class="column">
+                <h2>Análise de Segurança</h2>
+                <a href="https://www.virustotal.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-virus"></i>VirusTotal
+                    <span class="tooltip">Analise arquivos e URLs em busca de conteúdo malicioso.</span>
+                </a>
+                <a href="https://www.hybrid-analysis.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-flask"></i>Hybrid Analysis
+                    <span class="tooltip">Analise arquivos suspeitos em busca de malware.</span>
+                </a>
+                <a href="https://www.greynoise.io/" target="_blank" class="tool-link">
+                    <i class="fas fa-cloud"></i>GreyNoise
+                    <span class="tooltip">Identifique atividades maliciosas na internet.</span>
+                </a>
+
+                <h2>Ferramentas de Pesquisa e Inteligência</h2>
+                <a href="https://hunter.io/" target="_blank" class="tool-link">
+                    <i class="fas fa-envelope"></i>Hunter.io
+                    <span class="tooltip">Encontre endereços de e-mail associados a um domínio.</span>
+                </a>
+                <a href="https://intelx.io/" target="_blank" class="tool-link">
+                    <i class="fas fa-search-plus"></i>Intelligence X
+                    <span class="tooltip">Pesquise informações em várias fontes, incluindo a dark web.</span>
+                </a>
+                <a href="https://pipl.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-user"></i>Pipl
+                    <span class="tooltip">Pesquise informações sobre indivíduos em várias fontes.</span>
+                </a>
+                <a href="https://www.maltego.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-project-diagram"></i>Maltego
+                    <span class="tooltip">Plataforma de análise de dados e inteligência.</span>
+                </a>
+                <a href="https://www.spiderfoot.net/" target="_blank" class="tool-link">
+                    <i class="fas fa-spider"></i>SpiderFoot
+                    <span class="tooltip">Automatize a coleta de dados OSINT.</span>
+                </a>
+                <a href="https://github.com/s0md3v/Photon" target="_blank" class="tool-link">
+                    <i class="fas fa-camera"></i>Photon
+                    <span class="tooltip">Ferramenta de coleta de dados OSINT.</span>
+                </a>
+                <a href="https://osintframework.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-network-wired"></i>OSINT Framework
+                    <span class="tooltip">Framework para coleta de dados OSINT.</span>
+                </a>
+
+                <h2>Ferramentas de Arquivo e Histórico</h2>
+                <a href="https://archive.org/web/" target="_blank" class="tool-link">
+                    <i class="fas fa-archive"></i>Wayback Machine
+                    <span class="tooltip">Acesse versões arquivadas de sites.</span>
+                </a>
+                <a href="https://archive.is/" target="_blank" class="tool-link">
+                    <i class="fas fa-archive"></i>Archive
+                    <span class="tooltip">Acesse versões arquivadas de sites.</span>
+                </a>
+
+                <h2>Ferramentas de Análise de Sites</h2>
+                <a href="https://sitereport.netcraft.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-chart-bar"></i>SiteReport
+                    <span class="tooltip">Obtenha relatórios detalhados sobre sites.</span>
+                </a>
+                <a href="https://www.maxmind.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-map-marker-alt"></i>MaxMind
+                    <span class="tooltip">Ferramenta de geolocalização de IPs.</span>
+                </a>
+                <a href="https://publicwww.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-code"></i>PublicWWW
+                    <span class="tooltip">Pesquise código-fonte de sites.</span>
+                </a>
+                <a href="https://builtwith.com/" target="_blank" class="tool-link">
+                    <i class="fas fa-tools"></i>BuiltWith
+                    <span class="tooltip">Descubra as tecnologias usadas por um site.</span>
+                </a>
+            </div>
+        </div>
+
+        <p class="ethical-hacking">As ferramentas listadas devem ser usadas apenas para hacking ético.</p>
+
+        <br>
+        <a href="/" class="back-button">Voltar</a>
+    </div>
+</body>
+</html>

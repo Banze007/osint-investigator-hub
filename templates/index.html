@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ferramenta de investigação OSINT e hacking ético.">
+    <meta name="keywords" content="OSINT, hacking ético, investigação, cibersegurança">
+    <meta name="author" content="Seu Nome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Investigator Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('/static/dragao_kali.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .header-line {
+            background-color: #ff0000;
+            height: 5px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .detective-icon {
+            font-size: 4rem;
+            margin-bottom: 0;
+            animation: pulse 1.5s infinite, colorChange 3s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            33% { color: #800080; }
+            66% { color: #ffffff; }
+            100% { color: #ff0000; }
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-left: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        .description {
+            font-size: 1.2rem;
+            color: #d3d3d3;
+            margin-left: 20px;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+        .main-container {
+            margin-left: 20px;
+            margin-top: 120px;
+            max-width: 800px;
+        }
+        .tool-btn {
+            background-color: #1a1a1a;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            color: #00ff00;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            width: 200px;
+            display: block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .tool-btn:hover {
+            background-color: #00ff00;
+            color: #000000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.7);
+        }
+        .tool-btn:hover::before {
+            left: 100%;
+        }
+        .tool-btn:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000000;
+            color: #ffffff;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        .tool-btn-red {
+            background-color: #1a1a1a;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            color: #ff0000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            width: 200px;
+            display: block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-btn-red::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .tool-btn-red:hover {
+            background-color: #ff0000;
+            color: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.7);
+        }
+        .tool-btn-red:hover::before {
+            left: 100%;
+        }
+        .tool-btn-red:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000000;
+            color: #ffffff;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        .right-panel {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            width: 300px;
+        }
+        .news-panel {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        .news-panel h3 {
+            color: #ff0000;
+            margin-bottom: 15px;
+        }
+        .news-panel ul {
+            list-style-type: none;
+            padding: 0;
+            position: absolute;
+            animation: scrollNews 30s linear infinite;
+        }
+        @keyframes scrollNews {
+            0% { top: 100%; }
+            100% { top: -100%; }
+        }
+        .news-panel li {
+            margin-bottom: 10px;
+        }
+        .news-panel li:nth-child(odd) a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+        .news-panel li:nth-child(even) a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .news-panel a:hover {
+            text-decoration: underline;
+        }
+        .news-panel.expanded {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            width: 80%;
+            height: 80%;
+            overflow-y: scroll;
+            z-index: 2000;
+            background-color: #1a1a1a;
+            padding: 20px;
+        }
+        .news-panel.expanded h3 {
+            font-size: 2rem;
+        }
+        .news-panel.expanded ul {
+            font-size: 1.2rem;
+        }
+        .expand-btn, .collapse-btn {
+            display: none;
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        .news-panel.expanded .collapse-btn {
+            display: block;
+        }
+        .news-panel:not(.expanded) .expand-btn {
+            display: block;
+        }
+        .cyber-stats-panel {
+            position: fixed;
+            top: 470px;
+            right: 20px;
+            width: 300px;
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        .cyber-stats-panel h3 {
+            color: #ff0000;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .cyber-stats-panel p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+        .cyber-stats-panel span {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .pause-btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            position: absolute;
+            top: -15px;
+            right: 0;
+        }
+        #attack-map {
+            margin-top: 10px;
+            border: 1px solid #ff0000;
+        }
+        .audio-player {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .audio-player audio {
+            width: 200px;
+            outline: none;
+        }
+        @media (max-width: 768px) {
+            .right-panel, .cyber-stats-panel {
+                position: static;
+                width: 100%;
+                margin-top: 40px;
+            }
+            .audio-player {
+                width: 100%;
+                text-align: center;
+                bottom: 0;
+                right: 0;
+            }
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #d3d3d3;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-line"></div>
+        <div class="header-container">
+            <i class="fas fa-user-secret detective-icon"></i>
+            <div>
+                <h1 class="title">OSINT Investigator Hub</h1>
+                <p class="description">Bem-vindo ao OSINT Investigator Hub - Sua central de ferramentas para investigação e hacking ético.</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-container">
+            <div>
+                <a href="/theharvester" class="btn tool-btn" title="Coleta emails e subdomínios">Escanear Theharvester</a>
+                <a href="/sherlock" class="btn tool-btn" title="Busca perfis em redes sociais">Perfis Sherlock</a>
+                <a href="/phoneinfoga" class="btn tool-btn" title="Obtém informações de números de telefone">Info PhoneInfoga</a>
+                <a href="/whois" class="btn tool-btn" title="Consulta dados de registro de domínios">Consulta Whois</a>
+                <a href="/exiftool" class="btn tool-btn" title="Extrai metadados de arquivos">Metadados Exiftool</a>
+                <a href="/nmap" class="btn tool-btn" title="Escaneia portas e serviços de rede">Escanear Nmap</a>
+                <a href="/reconng" class="btn tool-btn" title="Realiza reconhecimento automatizado">Escanear Recon-ng</a>
+                <a href="/shodan" class="btn tool-btn" title="Busca dispositivos conectados à internet">Dispositivos Shodan</a>
+                <a href="/newtool" class="btn tool-btn" title="Explora uma nova ferramenta em desenvolvimento">Nova Ferramenta</a>
+                <a href="/ferramentas_web" class="btn tool-btn-red" title="Acessa ferramentas baseadas na web">Ferramentas Web</a>
+                <a href="https://app.hispy.io/?redirectedReason=notAuthenticated" target="_blank" class="btn tool-btn-red" title="Plataforma de monitoramento avançado">HI-SPY</a>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div style="display: flex; align-items: center;">
+                <h3 style="color: #ff0000; margin-right: auto;">Notícias de Cibersegurança</h3>
+            </div>
+            <div class="news-panel" id="news-panel">
+                <ul id="news-list"></ul>
+                <button class="expand-btn" onclick="expandNews()">+</button>
+                <button class="collapse-btn" onclick="collapseNews()">-</button>
+            </div>
+        </div>
+        <div class="cyber-stats-panel">
+            <h3>Honeynet - Ataques em Tempo Real <span id="status-indicator" class="status-dot"></span><button id="pause-btn" class="pause-btn">||</button></h3>
+            <div id="cyber-stats">
+                <p>Ataques Detectados: <span id="attack-count">0</span></p>
+                <p>IPs Maliciosos: <span id="malicious-ips">0</span></p>
+                <p>Países Atacantes: <span id="country-count">0</span></p>
+            </div>
+            <canvas id="attack-map" width="260" height="100"></canvas>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 OSINT Investigator Hub. Todos os direitos reservados.</p>
+        <div class="audio-player">
+            <audio controls loop autoplay>
+                <source src="/static/cold_mind_enigma_mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.tool-btn, .tool-btn-red').forEach(button => {
+            button.addEventListener('click', () => {
+                alert(`Você clicou em: ${button.textContent}`);
+            });
+        });
+
+        async function fetchNews() {
+            const apiKey = 'd6634a0556b548dc99ea3293ca3af234';
+            const response = await fetch(`https://newsapi.org/v2/everything?q=cybersecurity&apiKey=${apiKey}`);
+            const data = await response.json();
+            const newsList = document.getElementById('news-list');
+            newsList.innerHTML = '';
+
+            for (const article of data.articles.slice(0, 10)) {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = article.url;
+                link.target = '_blank';
+                const translatedTitle = await translateText(article.title);
+                link.textContent = translatedTitle.includes('MYMEMORY WARNING') ? article.title : translatedTitle;
+                listItem.appendChild(link);
+                newsList.appendChild(listItem);
+            }
+        }
+
+        async function translateText(text) {
+            try {
+                const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|pt`);
+                const data = await response.json();
+                return data.responseData.translatedText;
+            } catch (error) {
+                console.error('Erro ao traduzir:', error);
+                return text;
+            }
+        }
+
+        fetchNews();
+
+        function expandNews() {
+            document.getElementById('news-panel').classList.add('expanded');
+        }
+
+        function collapseNews() {
+            document.getElementById('news-panel').classList.remove('expanded');
+        }
+
+        function updateHoneynetStats() {
+            const attackCount = document.getElementById('attack-count');
+            const maliciousIps = document.getElementById('malicious-ips');
+            const countryCount = document.getElementById('country-count');
+
+            attackCount.textContent = Math.floor(Math.random() * 500) + 100;
+            maliciousIps.textContent = Math.floor(Math.random() * 50) + 10;
+            countryCount.textContent = Math.floor(Math.random() * 20) + 5;
+        }
+
+        let isPaused = false;
+        let intervalId = setInterval(updateHoneynetStats, 5000);
+        updateHoneynetStats();
+
+        document.getElementById('pause-btn').addEventListener('click', () => {
+            if (!isPaused) {
+                clearInterval(intervalId);
+                document.getElementById('pause-btn').textContent = '▶';
+                isPaused = true;
+            } else {
+                intervalId = setInterval(updateHoneynetStats, 5000);
+                document.getElementById('pause-btn').textContent = '||';
+                isPaused = false;
+            }
+        });
+
+        const canvas = document.getElementById('attack-map');
+        const ctx = canvas.getContext('2d');
+
+        function drawAttackMap() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff00';
+            for (let i = 0; i < 5; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        setInterval(drawAttackMap, 2000);
+        drawAttackMap();
+
+        // Ajuste de volume inicial da música
+        document.querySelector('audio').volume = 0.2; // Volume a 20%
+    </script>
+</body>
+</html>

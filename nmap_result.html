@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados - OSINT_Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .target-info {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .btn-success {
+            background-color: #2ecc71;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        .btn-secondary {
+            background-color: #7f8c8d;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        .port-open { color: green; font-weight: bold; }
+        .port-filtered { color: gray; }
+        .service { font-style: italic; }
+        .vuln { color: red; font-weight: bold; }
+        .os-info { color: blue; }
+        .no-vuln { color: #ffcc00; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="header text-center">
+            <h2>Resultados do Nmap</h2>
+        </div>
+        {% if result %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="target-info">
+                        <p><strong>Alvo Escaneado:</strong> {{ target }}</p>
+                        {% if options %}
+                            <p><strong>Opções Usadas:</strong> {{ options }}</p>
+                        {% endif %}
+                    </div>
+                    <h5>Portas, Serviços e Detalhes Detectados:</h5>
+                    <ul class="list-group">
+                        {% for line in result.split('\n') %}
+                            {% if 'open' in line and 'tcp' in line %}
+                                <li class="list-group-item port-open">{{ line }}</li>
+                            {% elif 'filtered' in line and 'tcp' in line %}
+                                <li class="list-group-item port-filtered">{{ line }}</li>
+                            {% elif 'Service detection' in line or 'Nmap done' in line or 'Starting Nmap' in line %}
+                                <li class="list-group-item service">{{ line }}</li>
+                            {% elif 'OS details' in line %}
+                                <li class="list-group-item os-info">{{ line }}</li>
+                            {% elif 'VULNERABLE' in line or 'vuln' in line %}
+                                <li class="list-group-item vuln">{{ line }}</li>
+                            {% elif "Couldn't find any" in line %}
+                                <li class="list-group-item no-vuln">{{ line }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% if saved_path %}
+                        <p class="mt-3">
+                            <a href="{{ saved_path }}" class="btn btn-success" download>Baixar Resultados</a>
+                            <a href="{{ saved_path }}" class="btn btn-info" target="_blank">Visualizar Resultados</a>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center text-danger">Nenhum resultado disponível.</p>
+        {% endif %}
+        <div class="text-center mt-4">
+            <a href="/nmap" class="btn btn-primary">Novo Escaneamento</a>
+            <a href="/" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

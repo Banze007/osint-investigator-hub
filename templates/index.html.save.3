@@ -1,0 +1,127 @@
+̣̣̣̣ GNU nano 8.3                                                                                                                                                                                                                                                                                        /home/kali/osint_tool/templates/index.html *                                                                                                                                                                                                                                                                                                
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>OSINT_Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-image: background-image: url('kali-logo-variation2.jpg'); /* Substitua pelo URL real da imagem gerada */
+            background-size: cover; /* Faz a imagem cobrir toda a página */
+            background-repeat: no-repeat; /* Evita repetição da imagem */
+            background-position: center; /* Centraliza a imagem */
+            font-family: 'Arial', sans-serif;
+            color: #ffffff; /* Texto branco */
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-line {
+            background-color: #ff0000; /* Linha vermelha no topo */
+            height: 5px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            position: fixed;
+            top: 10px;
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Corrige o posicionamento central */
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            color: #ff0000; /* Vermelho para "OSINT_Hub" */
+            font-size: 2rem; /* Aumentado para um pouco maior */
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 10px; /* Espaço entre o ícone e o texto */
+        }
+        .detective-icon {
+            font-size: 4rem; /* Aumentado para o dobro do tamanho (2x) */
+            color: #ff0000; /* Ícone vermelho */
+            margin-bottom: 0; /* Remove margem inferior */
+            animation: none; /* Remove animação de pulo para manter estabilidade */
+        }
+        .main-container {
+            text-align: center;
+            padding: 60px 40px 200px; /* Aumentado o padding inferior para mover botões para o rodapé */
+            max-width: 800px;
+            width: 90%;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 1.1rem;
+            color: #d3d3d3; /* Cinza claro para contraste */
+            margin-bottom: 50px; /* Mais espaço antes dos botões */
+        }
+        .tool-btn {
+            background-color: #ffffff; /* Botões brancos */
+            border: 2px solid #ff0000; /* Borda vermelha */
+            border-radius: 20px; /* Bordas arredondadas */            color: #000000; /* Texto preto */
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            margin: 20px; /* Aumentado o espaçamento entre os botões */
+            transition: all 0.3s ease;
+            width: 200px; /* Todos os botões com mesmo tamanho */
+            display: inline-block;
+        }
+        .tool-btn:hover {
+            background-color: #ff0000; /* Vermelho ao passar o mouse */
+            color: #ffffff; /* Texto branco */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-line"></div>
+    <div class="header-container">
+        <i class="fas fa-user-secret detective-icon"></i>
+        <a href="/" class="logo">OSINT_Hub</a>
+    </div>
+    <div class="main-container">
+        <h1 class="title">OSINT Investigator</h1>
+        <p class="description">Ferramentas de Investigação e Hacking Ético</p>
+        <div class="row justify-content-center g-3">
+            <div class="col-md-4 col-sm-6">
+                <a href="/theharvester" class="btn tool-btn">Iniciar Investigação</a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="/sherlock" class="btn tool-btn">Busca de Perfis</a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="/phoneinfoga" class="btn tool-btn">Info de Telefone</a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="/whois" class="btn tool-btn">Consulta Whois</a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="/exiftool" class="btn tool-btn">Extrair Metadados</a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="/nmap" class="btn tool-btn">Escanear Rede</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
