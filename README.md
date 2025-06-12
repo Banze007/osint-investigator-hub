@@ -1,6 +1,6 @@
 # OSINT Investigator Hub
 This project is a web-based OSINT (Open-Source Intelligence) tool built with Flask and integrated with Kali Linux tools. It features:
-![Main Page Screenshot](capturatela:screenshot-main-page.jpg)
+![Main Page Screenshot](screenshot-main-page.jpg)
 - Automated service management with systemd  
 - Web interface for tools like Nmap, Shodan, and TheHarvester
 - Custom templates and static assets
