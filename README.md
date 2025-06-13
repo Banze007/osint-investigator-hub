@@ -14,7 +14,7 @@ The OSINT Investigator Hub is a web-based Open-Source Intelligence (OSINT) tool 
 This toolset is intended solely for professional testing and ethical hacking activities. It must be used in compliance with all applicable laws and regulations, with explicit permission from system owners or administrators. Unauthorized use or exploitation is strictly prohibited and may result in legal consequences.
 
 ## Developed By
-Created by Banze007 to demonstrate expertise in web development, cybersecurity, and automation.
+Created by Fernando Ribeiro to demonstrate expertise in web development, cybersecurity, and automation.
 
 ## Setup
 1. Clone this repository: `git clone https://github.com/Banze007/osint-investigator-hub.git`
