@@ -1,5 +1,4 @@
 # OSINT Investigator Hub
-
 The OSINT Investigator Hub is a web-based Open-Source Intelligence (OSINT) tool developed using Flask, integrated with Kali Linux tools, designed exclusively for professional testing and ethical hacking purposes. This project aims to provide a secure and controlled environment for security researchers and professionals to conduct authorized assessments.
 
 ## Features
@@ -8,7 +7,7 @@ The OSINT Investigator Hub is a web-based Open-Source Intelligence (OSINT) tool 
 - Customizable templates and static assets
 - Virtual environment setup for dependency management
 
-![Main Page Screenshot](screenshot-main-page.jpg)
+![Main Page Screenshot](imagens/screenshot-main-page.jpg)
 
 ## Purpose and Usage
 This toolset is intended solely for professional testing and ethical hacking activities. It must be used in compliance with all applicable laws and regulations, with explicit permission from system owners or administrators. Unauthorized use or exploitation is strictly prohibited and may result in legal consequences.
